@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nginx:
+    image: shoaib789/staticsite:nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
