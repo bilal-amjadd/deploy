@@ -1,0 +1,34 @@
+Last Task Steps: 
+
+$ nano docker-compose.yml
+
+(Paste this code after replacing user & pass)
+
+version: '3'
+services:
+  nginx:
+    image: gulraizgulshan/social-app-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - api
+    networks:
+      - shunetwork
+  api:
+    image: gulraizgulshan/social-app-backend
+    environment:
+      - MONGODB_URL=mongodb+srv://<user>:<pass>@cluster0.mfjykwg.mongodb.net/
+      - JWT_SECRET=SHI
+      - PORT=5000
+    networks:
+      - shunetwork
+  client:
+    image: gulraizgulshan/social-app-frontend
+    networks:
+      - shunetwork
+
+networks:
+   shunetwork:
+
+$ docker compose up -d
